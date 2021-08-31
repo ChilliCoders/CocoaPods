@@ -314,6 +314,10 @@ module Pod
               phase.input_file_list_paths = script_phase[:input_file_lists]
               phase.output_file_list_paths = script_phase[:output_file_lists]
               phase.dependency_file = script_phase[:dependency_file]
+
+              if (always_out_of_date = script_phase.fetch(:always_out_of_date, '1')) == '1'
+                phase.always_out_of_date = always_out_of_date
+              end
               # At least with Xcode 10 `showEnvVarsInLog` is *NOT* set to any value even if it's checked and it only
               # gets set to '0' if the user has explicitly disabled this.
               if (show_env_vars_in_log = script_phase.fetch(:show_env_vars_in_log, '1')) == '0'
